@@ -1,26 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <div class="tabs">
+      <div class="tab" 
+      v-for="(tab, idx) in tabs"
+      :key="idx"
+      @click="select(tab)"
+      :class="{'activeTab' : selected === tab}"
+      >{{ tab }}</div>
+    </div>
+    <div class="content" 
+    :class="{'active-content' : activeTab === 'Посты'}">
+      <div class="posts">
+        <span v-for="(post, idx) in posts"
+        :key="idx">
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.body }}</p> 
+        </span>
+      </div>
+    </div>
+    <div class="content" 
+    :class="{'active-content' : activeTab === 'Пользователи'}">
+      <div class="users">
+        <span v-for="(user, idx) in users"
+        :key="idx"> {{ user.name }}
+        <button class="btn"
+        @click="filteredPost(idx + 1 )">Посмотреть посты</button>
+      </span>
+      </div>
+    </div>
+  </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+<script src="./main.js">
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style src="./app.css">
 </style>
