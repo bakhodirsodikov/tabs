@@ -11,13 +11,16 @@ export default {
       activeTab: '',
       users: [],
       posts: [],
+      filterUserId: '',
       filteredPosts: [],
-
+      comments: [],
+      userComment: '',
     }
   },
-  mounted(){
+  created(){  
     this.getUsers(),
-    this.getPosts()
+    this.getPosts(),
+    this.getComments()
   },
 
   methods:{
@@ -30,23 +33,58 @@ export default {
         await fetch('https://jsonplaceholder.typicode.com/users')
         .then(response => response.json())
         .then(json => this.users = json)
+        // .then(users => console.log(users))  
       },
 
       async getPosts(){
         await fetch('https://jsonplaceholder.typicode.com/posts')
         .then(response => response.json())
-        .then(json => this.posts = json)        
+        .then(json => this.posts = json)
+        .then(json => this.filteredPosts = json) 
+        // .then(filteredPosts => console.log(filteredPosts))         
       },
 
-      filteredPost(idx){
-        console.log(this.posts);
-          const filter = this.posts.filter(element => {
-            element.userId == idx
-            console.log();
-        });
-      console.log(filter);
+      async getComments(){
+        await fetch('https://jsonplaceholder.typicode.com/comments')
+        .then(response => response.json())
+        .then(json => this.comments = json)
+        // .then(comments => console.log(comments))
+      },
 
-    }
+      getUserName(id){
+        const userName = this.users.filter(e=>{
+          return e.id == id
+          
+        })
+        this.filterUserId = userName
+      },
+
+      filterPost(idx){
+          const filter = this.posts.filter(element => {
+            return element.userId == idx
+
+        });
+        this.filteredPosts = filter
+        this.selected = this.tabs[0]
+        this.activeTab = 'Посты'
+        this.getUserName(idx)
+        // console.log(this.filterUserId);
+    },
+    deleteFilter(){
+      this.filteredPosts = this.posts
+      this.filterUserId = ''
+    },
+    sendComment(id){
+      if(this.userComment){
+        const newComment = 
+      {
+        postId: id,
+        body: this.userComment
+      }
+      this.comments.push(newComment);
+      this.userComment = ''
+      }
+    },
   } 
 }
 createApp(App).mount('#app')
