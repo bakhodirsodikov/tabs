@@ -15,12 +15,14 @@ export default {
       filteredPosts: [],
       comments: [],
       userComment: '',
+      page: 0,
     }
   },
   created(){  
     this.getUsers(),
     this.getPosts(),
     this.getComments()
+    
   },
 
   methods:{
@@ -68,7 +70,7 @@ export default {
         this.selected = this.tabs[0]
         this.activeTab = 'Посты'
         this.getUserName(idx)
-        // console.log(this.filterUserId);
+        console.log(this.posts);
     },
     deleteFilter(){
       this.filteredPosts = this.posts

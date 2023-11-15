@@ -121,3 +121,13 @@ $green-active: #00d1b2;
   color: white;
   margin: 5px 0;
 }
+
+.box-btn{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  
+  .btn{
+    margin: 50px 10px;
+  }
+}

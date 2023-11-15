@@ -110,4 +110,13 @@
 .send-comment {
   color: white;
   margin: 5px 0;
+}
+
+.box-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.box-btn .btn {
+  margin: 50px 10px;
 }/*# sourceMappingURL=app.css.map */

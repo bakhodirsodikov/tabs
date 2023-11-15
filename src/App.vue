@@ -24,8 +24,9 @@
             <span></span>
           </button>
         </div>
-        <span v-for="(post, idx) in filteredPosts"
+        <template v-for="(post, idx) in filteredPosts"
         :key="idx">
+          <span v-if="idx < (this.page + 1) * 20 && idx >= this.page * 20">
           <h3>{{ post.title }}</h3>
           <p>{{ post.body }}</p> 
           <p class="autor"
@@ -49,9 +50,19 @@
           >
           <button class="btn send-comment"
           @click="sendComment(post.id)"
-          
           >Оставить комментарий</button>
         </span>
+        </template>
+        
+      </div>
+      <div class="box-btn">
+        <button class="btn"
+      v-if="page > 0"
+      @click="this.page = this.page - 1"
+      >Назад</button>
+      <button class="btn"
+      @click="page ++"
+      >Вперед</button>
       </div>
     </div>
     <div class="content" 
