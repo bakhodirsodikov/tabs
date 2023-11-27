@@ -1,19 +1,5 @@
-# tabs
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Создавал две табы (посты, пользователи).
+Загрузил пользователей и посты из https://jsonplaceholder.typicode.com.
+Отсортировал посты по пользоватлям и комментариев.
+Добавлял возможность оставлять комментарии под постом и при повторном филтрации они тоже показывается под соответсвующем постом. 
+При переходе к табу "Пользователи" и посмотреть посты срабатывает филтрация по пользователю и таб переходит к "Посты" и показывает постов пользователя и комментарии к нему
